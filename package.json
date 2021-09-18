@@ -1,0 +1,24 @@
+{
+  "name": "music.store",
+  "version": "1.0.0",
+  "description": "Store music app with MERN",
+  "main": "backend/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/estebanRojasOjeda/music.store.git"
+  },
+  "author": "Esteban Rojas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/estebanRojasOjeda/music.store/issues"
+  },
+  "homepage": "https://github.com/estebanRojasOjeda/music.store#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.5"
+  }
+}
