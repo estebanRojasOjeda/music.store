@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 const ProductView = (props) => {
 
     useEffect(() => {
-        axios.get("http://localhost:8000/api/product/all-products")
+        axios.get('http://localhost:8000/api/product/all-products')
             .then(res => {
                 props.setProducts(res.data.products)
             })
