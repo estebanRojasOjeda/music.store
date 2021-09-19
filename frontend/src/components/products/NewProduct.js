@@ -9,7 +9,7 @@ const initialState = {
 
 }
 
-const ProductForm = () => {
+const NewProduct = () => {
     const [newProduct, setNewProduct] = useState('');
     const [error, setError] = useState('');
 
@@ -67,4 +67,4 @@ const ProductForm = () => {
     );
 }
 
-export default ProductForm;
+export default NewProduct;

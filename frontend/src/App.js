@@ -1,7 +1,8 @@
 import './App.css';
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link} from "react-router-dom";
 import ProductContainer from './components/products/ProductContainer';
-import ProductForm from './components/products/ProductFrom';
+import NewProduct from './components/products/NewProduct';
+import DetailProduct from './components/products/DetailProduct';
 
 function App() {
   return (
@@ -26,7 +27,10 @@ function App() {
               <ProductContainer></ProductContainer>
             </Route>
             <Route path="/new">
-              <ProductForm></ProductForm>  
+              <NewProduct></NewProduct>  
+            </Route>
+            <Route path="/detail/:id">
+              <DetailProduct></DetailProduct>  
             </Route>
           </Switch>
         </div>

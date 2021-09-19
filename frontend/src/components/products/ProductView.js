@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import axios from "axios";
 import Swal from 'sweetalert2';
+import { useHistory } from "react-router-dom";
 
 
 const ProductView = (props) => {
@@ -13,6 +14,12 @@ const ProductView = (props) => {
             .catch(err => Swal.fire('Error getting products', 'Error getting the products view: ' + err, 'error'));
     }, []);
 
+    const history = useHistory();
+
+    const detail = (e) => {
+        history.push('/detail/' + e.target.value);
+    }
+
     return (
         <>
             <div>
@@ -22,6 +29,7 @@ const ProductView = (props) => {
                             <th>Name</th>
                             <th>Price</th>
                             <th>Manufacturer</th>
+                            <th>Detalle</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,6 +38,7 @@ const ProductView = (props) => {
                                 <td>{item.name}</td>
                                 <td>{item.price}</td>
                                 <td>{item.manufacturer}</td>
+                                <td><button onClick={detail} value={item._id}>GO</button></td>
                             </tr>)
                         })
 
