@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import Swal from 'sweetalert2';
 import { useHistory } from "react-router-dom";
-
+import DeleteButton from "./DeleteButton";
 
 const ProductView = (props) => {
 
@@ -28,33 +28,6 @@ const ProductView = (props) => {
         props.setProducts(props.products.filter(prd => prd._id != id));
     }
 
-    const deleteProduct = (e) => {
-
-        Swal.fire({
-            title: 'Estas segur@?',
-            text: "vas a elminar el registro: "+ e.target.value,
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Eliminar',
-            cancelButtonText: 'Cancelar'
-          }).then((result) => {
-            if (result.isConfirmed) {
-                axios.delete('http://localhost:8000/api/product/delete/' + e.target.value)
-                .then(res => {
-                    removeFromDom(e.target.value);
-                    console.log(res);
-                    Swal.fire(
-                        'Registro emilinado!',
-                        'no hay vuelta atrás!',
-                        'success'
-                      )
-                })
-            }
-          })
-    }
-
     return (
         <>
             <div>
@@ -77,7 +50,10 @@ const ProductView = (props) => {
                                 <td>{item.manufacturer}</td>
                                 <td><button onClick={detailProduct} value={item._id}>GO</button></td>
                                 <td><button onClick={updateProduct} value={item._id}>UP</button></td>
-                                <td><button onClick={deleteProduct} value={item._id}>DEL</button></td>
+                                <td>
+                                    <DeleteButton productId={item._id} successCallback={() => removeFromDom(item._id)}></DeleteButton>
+
+                                </td>
                             </tr>)
                         })
 
