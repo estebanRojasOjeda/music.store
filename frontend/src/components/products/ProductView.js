@@ -16,8 +16,43 @@ const ProductView = (props) => {
 
     const history = useHistory();
 
-    const detail = (e) => {
+    const detailProduct = (e) => {
         history.push('/detail/' + e.target.value);
+    }
+
+    const updateProduct = (e) => {
+        history.push('/update/' + e.target.value);
+    }
+
+    const removeFromDom = id => {
+        props.setProducts(props.products.filter(prd => prd._id != id));
+    }
+
+    const deleteProduct = (e) => {
+
+        Swal.fire({
+            title: 'Estas segur@?',
+            text: "vas a elminar el registro: "+ e.target.value,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Eliminar',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete('http://localhost:8000/api/product/delete/' + e.target.value)
+                .then(res => {
+                    removeFromDom(e.target.value);
+                    console.log(res);
+                    Swal.fire(
+                        'Registro emilinado!',
+                        'no hay vuelta atrás!',
+                        'success'
+                      )
+                })
+            }
+          })
     }
 
     return (
@@ -30,6 +65,8 @@ const ProductView = (props) => {
                             <th>Price</th>
                             <th>Manufacturer</th>
                             <th>Detalle</th>
+                            <th>Actualizar</th>
+                            <th>Eliminar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,7 +75,9 @@ const ProductView = (props) => {
                                 <td>{item.name}</td>
                                 <td>{item.price}</td>
                                 <td>{item.manufacturer}</td>
-                                <td><button onClick={detail} value={item._id}>GO</button></td>
+                                <td><button onClick={detailProduct} value={item._id}>GO</button></td>
+                                <td><button onClick={updateProduct} value={item._id}>UP</button></td>
+                                <td><button onClick={deleteProduct} value={item._id}>DEL</button></td>
                             </tr>)
                         })
 

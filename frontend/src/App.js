@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Link} from "react-router-dom";
 import ProductContainer from './components/products/ProductContainer';
 import NewProduct from './components/products/NewProduct';
 import DetailProduct from './components/products/DetailProduct';
+import UpdateProduct from './components/products/UpdateProduct';
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
             </Route>
             <Route path="/detail/:id">
               <DetailProduct></DetailProduct>  
+            </Route>
+            <Route path="/update/:id">
+              <UpdateProduct></UpdateProduct>  
             </Route>
           </Switch>
         </div>
